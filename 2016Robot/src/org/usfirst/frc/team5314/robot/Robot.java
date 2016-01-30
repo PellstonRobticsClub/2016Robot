@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	drivetrain.updateStatus();
 
     }
 
@@ -70,6 +71,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        drivetrain.updateStatus();
     }
     
     /**
