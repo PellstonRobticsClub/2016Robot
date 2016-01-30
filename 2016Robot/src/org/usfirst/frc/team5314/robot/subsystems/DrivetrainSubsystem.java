@@ -26,10 +26,17 @@ public class DrivetrainSubsystem extends Subsystem {
     	setDefaultCommand(new DriveWithJoystickCommand());
     }
     public void Drive(double X, double Y){
+    	//if (getDistance() < 44 && Y < 0){
+    		//Y = 0;
+    	//}
     	driveMotors.arcadeDrive(Y, -X);
     }
     public void updateStatus(){
-    	SmartDashboard.putNumber("Distance", (frontSensor.getVoltage()*1024*5));
+    	SmartDashboard.putNumber("Distance", getDistance());
+    }
+    public double getDistance(){
+    	double distance = Math.round(((frontSensor.getVoltage()/.00976562)*1.034)*10)/10;
+    	return distance;
     }
     
 }

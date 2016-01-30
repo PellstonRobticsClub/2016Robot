@@ -35,6 +35,7 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		drivetrain.updateStatus();
 	}
 
     public void autonomousInit() {
@@ -62,9 +63,10 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	drivetrain.updateStatus();
+    	
 
     }
+   
 
     /**
      * This function is called periodically during operator control
