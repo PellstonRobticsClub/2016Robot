@@ -5,8 +5,11 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5314.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team5314.robot.commands.AutonomousOneCommand;
+import org.usfirst.frc.team5314.robot.commands.AutonomousTwoCommand;
 import org.usfirst.frc.team5314.robot.subsystems.DrivetrainSubsystem;
 
 /**
@@ -22,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    SendableChooser AutoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -30,7 +34,11 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        //autonomousCommand = new AutonomousTwoCommand();
+        AutoChooser = new SendableChooser();
+        AutoChooser.addDefault("Auto One", new AutonomousOneCommand());
+        AutoChooser.addObject("Auto Two", new AutonomousTwoCommand());
+        SmartDashboard.putData("Auto Chooser", AutoChooser);
     }
 	
 	public void disabledPeriodic() {
@@ -40,6 +48,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+    	autonomousCommand = (Command) AutoChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
