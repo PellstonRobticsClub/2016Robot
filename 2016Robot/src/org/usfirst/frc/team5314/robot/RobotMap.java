@@ -14,7 +14,7 @@ public class RobotMap {
     public static int driveStick = 1;
 	public static int frontSensor = 0;
 	
-	public static int anglemotor = 0;
+	public static int anglemotor = 1;
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
