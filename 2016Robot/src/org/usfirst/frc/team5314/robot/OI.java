@@ -43,5 +43,8 @@ public class OI {
     	driveStick.getX();
     	return driveStick.getX();
     }
+    public double drivestickGetTrigger(){
+    	return driveStick.getRawAxis(2) - driveStick.getRawAxis(3);
+    }
 }
 

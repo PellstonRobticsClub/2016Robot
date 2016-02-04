@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5314.robot.commands.AutonomousOneCommand;
 import org.usfirst.frc.team5314.robot.commands.AutonomousTwoCommand;
 import org.usfirst.frc.team5314.robot.subsystems.DrivetrainSubsystem;
+import org.usfirst.frc.team5314.robot.subsystems.ShooterSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,7 +21,8 @@ import org.usfirst.frc.team5314.robot.subsystems.DrivetrainSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+	public static final ShooterSubsystem shooter = new ShooterSubsystem();
 	public static final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
 	public static OI oi;
 
