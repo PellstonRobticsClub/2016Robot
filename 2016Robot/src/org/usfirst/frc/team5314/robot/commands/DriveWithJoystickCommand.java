@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5314.robot.commands;
 
+import org.usfirst.frc.team5314.robot.OI;
 import org.usfirst.frc.team5314.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,8 +22,13 @@ public class DriveWithJoystickCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.Drive(Robot.oi.driveStickGetX(), Robot.oi.driveStickGetY());
-    }
+    	if (Robot.oi.isBackUpButtonPressed()){
+    		Robot.drivetrain.Drive(-Robot.oi.driveStickGetX(), -Robot.oi.driveStickGetY());
+    	}else{
+    		Robot.drivetrain.Drive(Robot.oi.driveStickGetX(), Robot.oi.driveStickGetY());
+    	}
+    		
+    	 }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

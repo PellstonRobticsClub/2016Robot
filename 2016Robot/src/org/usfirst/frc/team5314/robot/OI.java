@@ -1,7 +1,12 @@
 package org.usfirst.frc.team5314.robot;
 
+import org.usfirst.frc.team5314.robot.commands.LoadBoulderCommand;
+import org.usfirst.frc.team5314.robot.commands.ShootBoulderCommand;
+import org.usfirst.frc.team5314.robot.commands.StopWheelsCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,6 +20,9 @@ public class OI {
     Joystick driveStick = new Joystick(RobotMap.driveStick);
     
     // Button button = new JoystickButton(stick, buttonNumber);
+    Button loadButton = new JoystickButton(driveStick,1);
+    Button fireButton = new JoystickButton(driveStick, 2);
+    Button backUpButton = new JoystickButton (driveStick, 6);
     
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
@@ -31,6 +39,12 @@ public class OI {
     // Run the command while the button is being held down and interrupt it once
     // the button is released.
     // button.whileHeld(new ExampleCommand());
+    public OI(){
+    	loadButton.whileHeld(new LoadBoulderCommand());
+    	fireButton.whenPressed(new ShootBoulderCommand());
+    	loadButton.whenReleased(new StopWheelsCommand());
+    	
+    }
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -46,5 +60,9 @@ public class OI {
     public double drivestickGetTrigger(){
     	return driveStick.getRawAxis(2) - driveStick.getRawAxis(3);
     }
+    public boolean isBackUpButtonPressed(){
+    	return backUpButton.get();
+    }
+  
 }
 

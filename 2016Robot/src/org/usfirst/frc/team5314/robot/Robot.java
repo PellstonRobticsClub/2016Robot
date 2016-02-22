@@ -41,11 +41,13 @@ public class Robot extends IterativeRobot {
         AutoChooser.addDefault("Auto One", new AutonomousOneCommand());
         AutoChooser.addObject("Auto Two", new AutonomousTwoCommand());
         SmartDashboard.putData("Auto Chooser", AutoChooser);
+        shooter.setTalonFeedback();
     }
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		drivetrain.updateStatus();
+		shooter.updateStatus();
 	}
 
     public void autonomousInit() {
@@ -85,6 +87,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         drivetrain.updateStatus();
+        
     }
     
     /**
